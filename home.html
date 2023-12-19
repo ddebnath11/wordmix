@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+    <link rel="icon" type="image/png" href="fav.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@500&family=Poppins:wght@600&display=swap');
+    </style>
+    <title>StatGram</title>
+    <style>
+       a {
+    color: var(--slateful);
+    text-decoration: none;
+    position: relative;
+    font-weight: 300;
+    transition: color 0.3s ease-in-out, font-weight 0.8s ease-in-out;
+  }
+
+  a::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 16px;
+    background: var(--slateful);
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease-in-out; /* Animate the width property */
+  }
+
+  a:hover::before {
+    width: 100%;
+    transform-origin: left; /* Set the transform-origin to left */
+  }
+
+  a:hover {
+    color: var(--slateful);
+    font-weight: 800;
+  }
+      </style>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@1&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="static/js/main.js"></script>
+   
+</head>
+
+
+    <div class="container">
+
+
+
+
+        <nav id="navbar">
+            <ul>
+                <li class="active"><a href="home.html"> HOME</a></li>
+                <li><a href="read.html">READ</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">EXPLORE</a>
+                    <div class="dropdown-content">
+                        <a href="line.html">NEW WORDS</i></a>
+                        <a href="line.html">DICTIONARY</i></a>
+                        <a href="pie.html">SYNONYMS </a>         
+                    </div>
+                </li>
+                <li><a href="about.html">ABOUT</a></li>
+            </ul>
+        </nav>
+
+        <!-- Hamburger Icon -->
+<div class="hamburger" onclick="toggleMenu()">
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+
+<!-- Navigation Menu -->
+<div class="menu">
+    <a href="home.html" onclick="toggleMenu()">Home</a>
+    <a href="read.html" onclick="toggleMenu()">Read</a>
+    <a href="#" onclick="toggleMenu()">New Words</a>
+</div>
+
+         <div class="content" id="content">
+            <div class="fab" onclick="scrollToSection('create')">
+                + Write
+               
+            </div>
+        
+
+          
+            
+            <div class="intro">
+          <h2>Do you enjoy <span id="role"></span>?</h2>
+          <h2 style="opacity:70%;">If so, hello!</h2> 
+        </div>
+
+        <div>
+            <h2>Welcome to a repository of poetic expressions and creativity.</h2>
+        </div>
+
+        <div class="image-container" style="width: 100%; max-width: 100%; margin-top: 30px; overflow: hidden;">
+            <img src="Illustration.png" style="width: 100%; height: auto;">
+        </div>
+        
+
+        <div class="home-link">
+        <h2 class="links"><a href="read.html">Start Reading</a></h2>
+            <h2 class="links"><a href="read.html">Write A Verse</a></h2>
+        </div>
+
+        <div class="home-link">
+            <div class="allchart-container">
+                <div class="achart">
+                    <h1>Time</h1>
+                    <p>In the dance of seconds, moments fleeting,<br>
+                        Time weaves tales, silent and unrelenting.<br>
+                        Past whispers linger, futures yet unwind,<br>
+                        Eternal clockwork, the cosmic design.<p>
+                    <p>- Anonymous</p>
+                </div>
+
+                <div class="achart">
+                    <h1>Nature's Symphony</h1>
+                    <p>Beneath the emerald canopy's embrace,<br>
+                        Nature conducts a silent, verdant grace.<br>
+                        Rustling leaves, a whispered melody,<br>
+                        Earth's symphony, a timeless revelry.</p>
+                    <p>- Nature's Poet</p>
+                </div>
+
+                <div class="achart">
+                    <h1>Celestial Dreams</h1>
+                    <p>In the cosmic dance of stars on high,<br>
+                        Dreams unfold in the night sky.<br>
+                        Constellations weave tales untold,<br>
+                        Universe's secrets, a celestial gold.</p>
+                    <p>- Starry Voyager</p>
+                </div>
+                
+                <div class="achart">
+                    <h1>Ocean's Lullaby</h1>
+                    <p>Beneath the moon's soft, silver gleam,<br>
+                        Waves whisper in an ocean's dream.<br>
+                        Salt-kissed breezes serenade the night,<br>
+                        Nature's lullaby, a tranquil delight.</p>
+                    <p>- Seaside Dreamer</p>
+                </div>
+
+                <div class="achart" style="background-color: var(--slateful);">
+                    <h1 style="color: #111111;">Read more poems</h1>     
+                </div>
+
+                <div class="achart" style="background-color: var(--slateful);">
+                    <h1 style="color: #111111;">Write a poem</h1>     
+                </div>
+                
+                
+            </div>
+            
+        </div>
+
+        <div class="home-link">
+            <h2>Learn something new.</h2>
+            <h2 class="links"><a href="read.html">Learn New Words</a></h2>
+            <h2 class="links"><a href="read.html">Minimal Dictionary</a></h2>
+            <h2 class="links"><a href="read.html">Synonym Generator</a></h2>
+
+        </div>
+
+          
+
+
+     
+
+     
+      
+          
+
+      
+<script>
+    function toggleMenu() {
+    var menu = document.querySelector('.menu');
+    menu.classList.toggle('menu-open');
+}
+
+// Get references to the hamburger icon and menu
+var hamburger = document.querySelector('.hamburger');
+var menu = document.querySelector('.menu');
+
+// Toggle menu function
+function toggleMenu() {
+    menu.classList.toggle('menu-open');
+}
+
+// Close menu when clicking outside
+document.addEventListener('click', function (event) {
+    var isClickInsideMenu = menu.contains(event.target);
+    var isClickOnHamburger = hamburger.contains(event.target);
+
+    if (!isClickInsideMenu && !isClickOnHamburger && menu.classList.contains('menu-open')) {
+        toggleMenu();
+    }
+});
+
+</script>
+      
+
+
+   
+
+       
+          
+          
+          
+
+        
+
+        
+
+
+
+
+        
+
+          
+            
+        
+
+        
+
+
+
+        
+
+        
+
+        
+        
+
+
+        <script>
+
+
+
+            const roles = ['poems', 'stories', 'reading', 'writing']; // Define the roles
+
+let index = 0;
+let letterIndex = 0;
+let direction = 'forward';
+let interval;
+
+function updateRole() {
+  const roleSpan = document.getElementById('role');
+  const currentRole = roles[index];
+  
+  if (direction === 'forward') {
+    roleSpan.textContent = currentRole.substring(0, letterIndex);
+    letterIndex++;
+
+    if (letterIndex > currentRole.length) {
+      direction = 'backward';
+      setTimeout(() => {
+        clearInterval(interval);
+        interval = setInterval(updateRole, 100); // Change text every 1 second
+      }, 2000); // Wait for 2 seconds before starting the backward animation
+    }
+  } else {
+    roleSpan.textContent = currentRole.substring(0, letterIndex);
+    letterIndex--;
+
+    if (letterIndex === 0) {
+      direction = 'forward';
+      index = (index + 1) % roles.length; // Move to the next role
+    }
+  }
+}
+
+interval = setInterval(updateRole, 100); // Typing speed
+
+
+           
+
+
+
+
+
+            // NAV BAR HIDE
+            let lastScrollTop = 0;
+        
+            document.addEventListener('scroll', handleNavbarScroll);
+        
+            function handleNavbarScroll() {
+                const navbar = document.getElementById('navbar');
+                const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+        
+                if (scrollPosition > lastScrollTop) {
+                    navbar.style.top = '-80px'; // Scroll down, hide the navbar
+                } else {
+                    navbar.style.top = '60px'; // Scroll up, show the navbar
+                }
+        
+                lastScrollTop = scrollPosition;
+            }
+
+        </script>
+
+<script>
+                      
+            
+    function showSection(section) {
+        document.getElementById(`${section}-section`).style.display = 'block';
+    }
+
+    function scrollToSection(section) {
+        const sectionElement = document.getElementById(`${section}-section`);
+        if (sectionElement) {
+            sectionElement.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+</script>
+
+<script>
+function toggleDescription(element) {
+element.classList.toggle("active");
+}
+
+function showSection(section) {
+document.getElementById(`${section}-section`).style.display = 'block';
+}
+
+function scrollToSection(section) {
+const sectionElement = document.getElementById(`${section}-section`);
+if (sectionElement) {
+sectionElement.scrollIntoView({ behavior: 'smooth' });
+}
+}
+</script>
+
+
+
+
+
+        

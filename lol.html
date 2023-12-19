@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Save as Image Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        canvas {
+            border: 1px solid #333;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <label for="text">Text:</label>
+        <input type="text" id="text" value="Your custom text here">
+
+        <label for="color">Text Color:</label>
+        <input type="color" id="color" value="#000000">
+
+        <button onclick="generateImage()">Generate Image</button>
+
+        <canvas id="canvas" width="300" height="300"></canvas>
+
+        <a id="downloadLink" style="display: none;" download="custom_image.png">
+            <button>Download Image</button>
+        </a>
+    </div>
+
+    <script>
+        function generateImage() {
+            const text = document.getElementById('text').value;
+            const textColor = document.getElementById('color').value;
+            
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+
+            // Set canvas background color
+            ctx.fillStyle = '#ffffff'; // You can customize the background color
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Set text properties
+            ctx.font = '20px Arial';
+            ctx.fillStyle = textColor;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+
+            // Calculate text position in the center
+            const x = canvas.width / 2;
+            const y = canvas.height / 2;
+
+            // Draw text on the canvas
+            ctx.fillText(text, x, y);
+
+            // Show download link
+            const downloadLink = document.getElementById('downloadLink');
+            downloadLink.href = canvas.toDataURL('image/png');
+            downloadLink.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

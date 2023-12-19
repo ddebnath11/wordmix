@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/9ca22fae96.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@500&family=Poppins:wght@600&display=swap');
+    </style>
+    <title>StatGram</title>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@1&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="static/js/main.js"></script>
+    <script src="loaded.js"></script>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-solid-straight/css/uicons-solid-straight.css'>
+</head>
+
+<body>
+    <div class="container">
+
+        <nav id="navbar">
+            <ul>
+                <li><a href="home.html"> HOME</a></li>
+                <li  class="active"><a href="read.html">READ</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">EXPLORE</a>
+                    <div class="dropdown-content">
+                        <a href="line.html">NEW WORDS</i></a>
+                        <a href="line.html">DICTIONARY</i></a>
+                        <a href="pie.html">SYNONYMS </a>         
+                    </div>
+                </li>
+                <li><a href="about.html">ABOUT</a></li>
+            </ul>
+        </nav>
+
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        
+        <!-- Navigation Menu -->
+        <div class="menu">
+            <a href="home.html" onclick="toggleMenu()">Home</a>
+            <a href="read.html" onclick="toggleMenu()">Read</a>
+            <a href="#" onclick="toggleMenu()">New Words</a>
+        </div>
+       
+        
+        <div class="content" id="content">
+            
+
+            <div class="wide-container">
+    
+               
+                <div class="categories">
+                    <span class="category" data-cat="All">All</span>
+                    <span class="category" data-cat="Joyful">Joyful</span>
+                    <span class="category" data-cat="Reflective">Reflective</span>
+                    <span class="category" data-cat="Melancholic">Melancholic</span>
+                    <span class="category" data-cat="Inspiring">Inspiring</span>
+                    <span class="category" data-cat="Ethereal">Ethereal</span>
+                    <span class="category" data-cat="Sensual">Sensual</span>
+                    <span class="category" data-cat="Mysterious">Mysterious</span>
+                    <span class="category" data-cat="Whimsical">Whimsical</span>
+                    <span class="category" data-cat="Hopeful">Hopeful</span>
+                </div>
+                
+
+
+
+                  
+                    
+                    
+                </div>
+
+                <div class="wide-container">
+    
+               
+                    <div class="search-filters">
+                        <span class="search-filter">Time</span>
+                        <span class="search-filter">Regret</span>
+                        <span class="search-filter">Waves</span>
+                        <span class="search-filter">Joy</span>
+                        <span class="search-filter">Nature</span>
+                        <span class="search-filter">Love</span>
+                        <span class="search-filter">Adventure</span>
+                        <span class="search-filter">Reflection</span>
+                        <span class="search-filter">Inspiration</span>
+                        <span class="search-filter">Hope</span>
+                        <!-- Add more keywords as needed -->
+                    </div>
+                    
+    
+    
+    
+                      
+                        
+                        
+                    </div>
+                
+
+                
+            </div>
+
+            <!-- Add this HTML for the mobile filter pill -->
+<div class="mobile-filter">Filter</div>
+<div class="filter-options">
+    <div class="filter-option">Option 1</div>
+    <div class="filter-option">Option 2</div>
+    <div class="filter-option">Option 3</div>
+    <!-- Add more options as needed -->
+</div>
+
+            
+            
+            
+            <div class="wide-container">
+               
+
+                <script>
+
+
+                    document.addEventListener('DOMContentLoaded', function () {
+    updateChartCount(); // Call the function once the DOM is loaded
+});
+
+function updateChartCount() {
+    const chartCountElement = document.getElementById('chartCount');
+    const chartContainer = document.querySelector('.allchart-container');
+
+    if (chartCountElement && chartContainer) {
+        const chartCount = chartContainer.querySelectorAll('.achart').length;
+        chartCountElement.textContent = `${chartCount}`;
+    }
+}
+                </script>
+                <input type="text" id="chartSearchInput" class="dest-input" placeholder="&#x1F50D; Search poems, short stories and more..."
+                
+                    fdprocessedid="00wbidm" style="font-weight: 700;">
+                   
+            </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+    const compareButton = document.getElementById('compareButton');
+
+    compareButton.addEventListener('click', function () {
+        window.open('create.html', '_blank');
+    });
+});
+
+            </script>
+
+            <script>
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const chartSearchInput = document.getElementById('chartSearchInput');
+    const chartContainers = document.querySelectorAll('.achart');
+    const notFoundMessage = document.createElement('p');
+    notFoundMessage.textContent = 'Sorry. We could not find that chart. ';
+    const contributeLink = document.createElement('a');
+const updatepageLink = document.createElement('a');
+contributeLink.textContent = 'Contribute a chart';
+updatepageLink.textContent = 'Reset search results';
+contributeLink.href = 'contribution.html'; // Replace 'contribution.html' with the appropriate link
+updatepageLink.href = 'explore.html';
+contributeLink.style.color = 'blue';
+updatepageLink.style.color = 'blue';
+contributeLink.style.textDecoration = 'underline';
+
+notFoundMessage.appendChild(contributeLink);
+notFoundMessage.appendChild(document.createElement('br')); // Add a line break
+notFoundMessage.appendChild(updatepageLink);
+
+    let invalidSearchTerm = false; // Flag to track invalid search term
+
+    if (chartSearchInput) {
+        chartSearchInput.addEventListener('input', function () {
+            const searchTerm = chartSearchInput.value.trim().toLowerCase();
+            let found = false;
+
+            chartContainers.forEach(function (chartContainer) {
+                const chartTitle = chartContainer.querySelector('h1').textContent.toLowerCase();
+
+                if (chartTitle.includes(searchTerm)) {
+                    chartContainer.style.display = 'block';
+                    found = true;
+
+                } else {
+                    chartContainer.style.display = 'none';
+                    
+
+                   
+
+                }
+            });
+
+            if (!found) {
+                if (!invalidSearchTerm) {
+                    // Update only if the previous search term was valid
+                    const dynamicChartContainer = document.getElementById('dynamicChartContainer');
+                    dynamicChartContainer.appendChild(notFoundMessage);
+                }
+                invalidSearchTerm = true;
+            } else {
+                invalidSearchTerm = false;
+                notFoundMessage.style.display = 'none';
+            }
+        });
+    }
+});
+
+
+
+
+    // ... (your existing code)
+
+    const searchFilters = document.querySelectorAll('.search-filter');
+
+if (searchFilters) {
+    searchFilters.forEach(function (filter) {
+        filter.addEventListener('click', function () {
+            const searchTerm = filter.textContent.replace(/"/g, ''); // Remove double quotes if present
+            chartSearchInput.value = searchTerm;
+
+            // Manually trigger the input event on the search input to perform search
+            const event = new Event('input', { bubbles: true });
+            chartSearchInput.dispatchEvent(event);
+        });
+    });
+}
+
+// Add this JavaScript to toggle the active state of the filter pill
+document.addEventListener('DOMContentLoaded', function () {
+    const filterPill = document.querySelector('.mobile-filter');
+    const filterOptions = document.querySelector('.filter-options');
+
+    // Toggle active class on click
+    filterPill.addEventListener('click', function () {
+        this.classList.toggle('active');
+    });
+
+    // Close the filter options when clicking outside
+    document.addEventListener('click', function (event) {
+        if (!event.target.matches('.mobile-filter')) {
+            filterPill.classList.remove('active');
+        }
+    });
+});
+
+
+
+
+
+            </script>
+
+            <div id="contentContainer" class="content-container">
+             
+
+              
+
+              </div>
+<script>
+ const poems = [
+    {
+        id: 'time',
+        title: 'Time',
+        content: `In the dance of seconds, moments fleeting,<br>Time weaves tales, silent and unrelenting.<br>Past whispers linger, futures yet unwind,<br>Eternal clockwork, the cosmic design.`,
+        author: 'Anonymous'
+    },
+    {
+        id: 'nature',
+        title: "Nature's Symphony",
+        content: `Beneath the emerald canopy's embrace,<br>Nature conducts a silent, verdant grace.<br>Rustling leaves, a whispered melody,<br>Earth's symphony, a timeless revelry.`,
+        author: "Nature's Poet"
+    },
+    {
+        id: 'celestial',
+        title: 'Celestial Dreams',
+        content: `In the cosmic dance of stars on high,<br>Dreams unfold in the night sky.<br>Constellations weave tales untold,<br>Universe's secrets, a celestial gold.`,
+        author: 'Starry Voyager'
+    },
+    {
+        id: 'ocean',
+        title: "Ocean's Lullaby",
+        content: `Beneath the moon's soft, silver gleam,<br>Waves whisper in an ocean's dream.<br>Salt-kissed breezes serenade the night,<br>Nature's lullaby, a tranquil delight.`,
+        author: 'Seaside Dreamer'
+    },
+    {
+        id: 'inspiration',
+        title: 'Inspiration',
+        content: `In the quiet whispers of the morn,<br>Inspiration is a melody, gently born.<br>With each dawn, a canvas anew,<br>Dreams painted in the morning dew.`,
+        author: 'Dreamweaver'
+    },
+    {
+        id: 'serenity',
+        title: 'Serenity',
+        content: `Amidst the chaos, find a tranquil space,<br>Serenity blooms, a peaceful embrace.<br>Whispers of calm in the gentle breeze,<br>Nature's solace, puts the heart at ease.`,
+        author: 'Tranquil Spirit'
+    }
+];
+// Function to create and append poem elements
+function createPoemElements() {
+    const contentContainer = document.getElementById('contentContainer');
+
+    poems.forEach(poem => {
+        const poemElement = document.createElement('div');
+        poemElement.classList.add('achart');
+        poemElement.innerHTML = `
+            <h1>${poem.title}</h1>
+            <p>${poem.content}<p>
+            <p>- ${poem.author}</p>
+        `;
+        poemElement.id = poem.id;
+        poemElement.addEventListener('click', () => openFullView(poem));
+        contentContainer.appendChild(poemElement);
+    });
+}
+
+// Function to open full view screen
+function openFullView(poem) {
+    // Update the URL with the poem's ID
+    const poemUrl = `#${poem.id}`;
+    history.pushState({ poemId: poem.id }, poem.title, poemUrl);
+
+    // Call the function to display the full view
+    displayFullView(poem);
+}
+
+// Function to display full view based on URL
+function displayFullView(poem) {
+    // Assuming you have a function to open a full view screen
+    // with share, download buttons and display the full poem
+    console.log('Opening full view for:', poem.title);
+}
+
+// Event listener for the popstate event
+window.addEventListener('popstate', (event) => {
+    const state = event.state;
+    if (state && state.poemId) {
+        // Retrieve the poem based on the ID
+        const poem = poems.find(p => p.id === state.poemId);
+        if (poem) {
+            // Call the function to display the full view
+            displayFullView(poem);
+        }
+    } else {
+        // Handle other cases or go back to the main view
+    }
+});
+
+// Call the function to create poem elements
+createPoemElements();
+
+</script>
+
+<script>
+    function toggleMenu() {
+    var menu = document.querySelector('.menu');
+    menu.classList.toggle('menu-open');
+}
+
+// Get references to the hamburger icon and menu
+var hamburger = document.querySelector('.hamburger');
+var menu = document.querySelector('.menu');
+
+// Toggle menu function
+function toggleMenu() {
+    menu.classList.toggle('menu-open');
+}
+
+// Close menu when clicking outside
+document.addEventListener('click', function (event) {
+    var isClickInsideMenu = menu.contains(event.target);
+    var isClickOnHamburger = hamburger.contains(event.target);
+
+    if (!isClickInsideMenu && !isClickOnHamburger && menu.classList.contains('menu-open')) {
+        toggleMenu();
+    }
+});
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
