@@ -103,6 +103,35 @@ footer {
     border-top: 1px solid var(--slateful); /* Adjust color as needed */
 }
 
+a {
+    color: var(--slateful);
+    text-decoration: none;
+    position: relative;
+    font-weight: 300;
+    transition: color 0.3s ease-in-out, font-weight 0.8s ease-in-out;
+  }
+
+  a::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 16px;
+    background: var(--slateful);
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease-in-out; /* Animate the width property */
+  }
+
+  a:hover::before {
+    width: 100%;
+    transform-origin: left; /* Set the transform-origin to left */
+  }
+
+  a:hover {
+    color: var(--slateful);
+    font-weight: 800;
+  }
+
 ::selection {
     color: #111111;
     background: var(--slateful);
@@ -782,6 +811,21 @@ nav ul li a:hover::before {
 
 /* Display the hamburger icon only on small screens */
 @media screen and (max-width: 767px) {
+
+    a {
+        color: var(--slateful);
+        text-decoration: none;
+        position: relative;
+        font-weight: 300;
+        transition: color 0.3s ease-in-out, font-weight 0.8s ease-in-out;
+      }
+    
+    
+      a:hover {
+        color: var(--slateful);
+        font-weight: 800;
+      }
+
     .hamburger {
         display: block;
     }
@@ -852,6 +896,20 @@ nav ul li a:hover::before {
         width: 80%;
         margin-top: 50px;
     }
+
+    a {
+        color: var(--slateful);
+        text-decoration: none;
+        position: relative;
+        font-weight: 300;
+        transition: color 0.3s ease-in-out, font-weight 0.8s ease-in-out;
+      }
+    
+    
+      a:hover {
+        color: var(--slateful);
+        font-weight: 800;
+      }
 
     .allchart-container{
         display: none;
@@ -951,6 +1009,19 @@ nav ul li a:hover::before {
         width: 90%;
         margin-top: 50px;
     }
+    a {
+        color: var(--slateful);
+        text-decoration: none;
+        position: relative;
+        font-weight: 300;
+        transition: color 0.3s ease-in-out, font-weight 0.8s ease-in-out;
+      }
+    
+    
+      a:hover {
+        color: var(--slateful);
+        font-weight: 800;
+      }
 
     .container h1 {
         font-size: 50px;
