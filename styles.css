@@ -817,13 +817,11 @@ nav ul li a:hover::before {
         text-decoration: none;
         position: relative;
         font-weight: 300;
-        transition: color 0.3s ease-in-out, font-weight 0.8s ease-in-out;
       }
     
     
       a:hover {
         color: var(--slateful);
-        font-weight: 800;
       }
 
     .hamburger {
@@ -902,13 +900,13 @@ nav ul li a:hover::before {
         text-decoration: none;
         position: relative;
         font-weight: 300;
-        transition: color 0.3s ease-in-out, font-weight 0.8s ease-in-out;
+
       }
     
     
       a:hover {
         color: var(--slateful);
-        font-weight: 800;
+
       }
 
     .allchart-container{
@@ -1014,13 +1012,13 @@ nav ul li a:hover::before {
         text-decoration: none;
         position: relative;
         font-weight: 300;
-        transition: color 0.3s ease-in-out, font-weight 0.8s ease-in-out;
+
       }
     
     
       a:hover {
         color: var(--slateful);
-        font-weight: 800;
+
       }
 
     .container h1 {
