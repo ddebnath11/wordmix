@@ -129,7 +129,7 @@ a {
 
   a:hover {
     color: var(--slateful);
-    font-weight: 800;
+    font-weight: 500;
   }
 
 ::selection {
@@ -691,7 +691,7 @@ nav ul li a:hover::before {
 
 .content-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     margin: 1px;
     margin-top: 30px;
 }
@@ -706,13 +706,13 @@ nav ul li a:hover::before {
 }
 
 .achart h1 {
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 800;
     margin: 10px 0;
 }
 
 .achart p {
-    font-size: 25px;
+    font-size: 18px;
     font-weight: 400;
     margin: 10px 0;
     opacity: 70%;
@@ -817,11 +817,13 @@ nav ul li a:hover::before {
         text-decoration: none;
         position: relative;
         font-weight: 300;
+        transition: color 0.3s ease-in-out, font-weight 0.8s ease-in-out;
       }
     
     
       a:hover {
         color: var(--slateful);
+        font-weight: 800;
       }
 
     .hamburger {
@@ -843,6 +845,14 @@ nav ul li a:hover::before {
     .achart {
         width: 100%;
         margin: 10px 0;
+    }
+
+    .achart h1{
+        font-size: 22px;
+    }
+
+    .achart p{
+        font-size: 18px;
     }
 
     .wide-container {
@@ -900,13 +910,13 @@ nav ul li a:hover::before {
         text-decoration: none;
         position: relative;
         font-weight: 300;
-
+        transition: color 0.3s ease-in-out, font-weight 0.8s ease-in-out;
       }
     
     
       a:hover {
         color: var(--slateful);
-
+        font-weight: 800;
       }
 
     .allchart-container{
@@ -965,6 +975,14 @@ nav ul li a:hover::before {
         margin: 10px 0;
     }
 
+    .achart h1{
+        font-size: 22px;
+    }
+
+    .achart p{
+        font-size: 18px;
+    }
+
     .mobile-filter {
         display: block;
     }
@@ -1012,7 +1030,7 @@ nav ul li a:hover::before {
         text-decoration: none;
         position: relative;
         font-weight: 300;
-
+        transition: color 0.3s ease-in-out, font-weight 0.8s ease-in-out;
       }
     
     
