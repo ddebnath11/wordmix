@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="fav.png">
+    <script src="script.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@500&family=Poppins:wght@600&display=swap');
+    </style>
+    <title>WordMix</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@1&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <nav id="navbar">
+            <ul>
+                <li><a href="home.html"> HOME</a></li>
+                <li><a href="read.html">READ</a></li>
+                <li   class="active"><a href="you.html">YOU</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">EXPLORE</a>
+                    <div class="dropdown-content">
+                        <a href="words.html">NEW WORDS</i></a>
+                        <a href="synonym.html">SYNONYMS </a>  
+                    </div>
+                </li>
+                <li><a href="about.html">ABOUT</a></li>
+            </ul>
+        </nav>
+
+        <!-- Hamburger Icon -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <div class="menu">
+            <a href="home.html" onclick="toggleMenu()">Home</a>
+            <a href="read.html" onclick="toggleMenu()">Read</a>
+            <a href="you.html" onclick="toggleMenu()">You</a>
+            <a href="words.html" onclick="toggleMenu()">New Words</a>
+            <a href="synonym.html" onclick="toggleMenu()">Synonym Generator</a>
+        </div>
+
+        <div class="content" id="content">
+            <div>
+                <h2>Create A Masterpiece.</h2>
+                <p>Write and submit your poem, quote, or short story, and we will publish it*</p>
+                <div class="home-link">
+                    <p class="links"><a href="read.html">*Please read our rules and policies before you proceed.</a></p>
+                </div>
+            </div>
+
+            <form action="https://formspree.io/f/xdoqndlg" method="POST">
+                <div class="poem-form" style="margin-top: 40px;">
+                    <h1 style="margin-bottom: 30px;">Your Details</h1>
+                    <label>
+                      
+                        <input type="text" class="form-input" placeholder="YOUR NAME" style="width: 80%;" name="author">
+                    </label>
+                    <label>
+                        
+                        <input type="email" class="form-input" placeholder="EMAIL ID" style="width: 80%;" name="email">
+                    </label>
+                </div>
+
+                <div class="poem-form" style="margin-top: 40px;">
+                    <h1 style="margin-bottom: 30px;">Write your content</h1>
+                    <label>
+                       
+                        <input type="text" class="form-input" placeholder="Title..." style="width: 80%;" name="title">
+                    </label>
+                    <label>
+                       
+                        <textarea class="form-input-textarea" placeholder="Write here..." id="content" rows="4" name="content"></textarea>
+                    </label>
+                </div>
+
+                <!-- Your existing button with updated onclick event -->
+                <button onclick="submitForm()" class="fab" type="submit" id="submitButton">Submit</button>
+            </form>
+
+            <script>
+                // Function to handle form submission
+function submitForm() {
+    const author = document.querySelector('input[name="author"]').value;
+    const email = document.querySelector('input[name="email"]').value;
+    const title = document.querySelector('input[name="title"]').value;
+    const content = document.querySelector('textarea[name="content"]').value;
+
+    // Create a poem object
+    const poem = {
+        id: generateRandomId(8),
+        title: title,
+        content: content,
+    };
+
+    // Save the poem to local storage
+    savePoem(poem);
+
+    // Clear form fields
+    document.querySelector('input[name="author"]').value = '';
+    document.querySelector('input[name="email"]').value = '';
+    document.querySelector('input[name="title"]').value = '';
+    document.querySelector('textarea[name="content"]').value = '';
+
+    // Display submitted poems
+    displayPoems();
+}
+
+// Function to save poem to local storage
+function savePoem(poem) {
+    const poems = JSON.parse(localStorage.getItem('poems')) || [];
+    poems.push(poem);
+    localStorage.setItem('poems', JSON.stringify(poems));
+}
+
+// Function to display submitted poems
+function displayPoems() {
+    const poemsContainer = document.getElementById('poemsContainer');
+    poemsContainer.innerHTML = ''; // Clear existing content
+
+    const poems = JSON.parse(localStorage.getItem('poems')) || [];
+
+    poems.forEach(poem => {
+        const poemElement = document.createElement('div');
+        poemElement.innerHTML = `<h2>${poem.title}</h2><p>${poem.content}</p>`;
+        poemsContainer.appendChild(poemElement);
+    });
+}
+
+// Fetch and display submitted poems when the page loads
+window.onload = function () {
+    displayPoems();
+};
+
+            </script>
+    </div>
+</body>
+
+</html>

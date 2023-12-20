@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+    <link rel="icon" type="image/png" href="fav.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@500&family=Poppins:wght@600&display=swap');
+    </style>
+    <title>WordMix</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@1&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="static/js/main.js"></script>
+   
+</head>
+
+
+    <div class="container">
+
+
+
+
+        <nav id="navbar">
+            <ul>
+                <li class="active"><a href="home.html"> HOME</a></li>
+                <li><a href="read.html">READ</a></li>
+                <li><a href="you.html">YOU</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">EXPLORE</a>
+                    <div class="dropdown-content">
+                        <a href="words.html">NEW WORDS</i></a>
+                        <a href="synonym.html">SYNONYMS </a>         
+                    </div>
+                </li>
+                <li><a href="about.html">ABOUT</a></li>
+            </ul>
+        </nav>
+
+        <!-- Hamburger Icon -->
+<div class="hamburger" onclick="toggleMenu()">
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+
+<!-- Navigation Menu -->
+<div class="menu">
+    <a href="home.html" onclick="toggleMenu()">Home</a>
+    <a href="read.html" onclick="toggleMenu()">Read</a>
+    <a href="you.html" onclick="toggleMenu()">You</a>
+    <a href="words.html" onclick="toggleMenu()">New Words</a>
+    <a href="synonym.html" onclick="toggleMenu()">Synonym Generator</a>
+</div>
+
+<div class="content" id="content">
+    <div>
+        <h2>Synonym Generator</h2>
+        <p>Enter a word to find its synonyms:</p>
+    </div>
+
+    <div class="synonym-form" style="margin-top: 20px;">
+        <label>
+            <input type="text" class="dest-input" placeholder="Enter a word..." id="inputWord" style="width: 80%; font-size: 30px;">
+        </label>
+        <button onclick="generateSynonyms()" class="fab">Generate Synonyms</button>
+    </div>
+
+    <!-- Container to display synonyms -->
+    <div id="synonymsContainer" class="content-container"></div>
+</div>
+
+<!-- JavaScript code to generate synonyms -->
+<script>
+      const synonymsData = [
+      { word: 'happy', synonyms: ['joyful', 'content', 'pleased', 'satisfied', 'delighted', 'cheerful', 'blissful'] },
+    { word: 'sad', synonyms: ['unhappy', 'mournful', 'gloomy', 'depressed', 'melancholy', 'downcast', 'despondent'] },
+    { word: 'beautiful', synonyms: ['attractive', 'lovely', 'gorgeous', 'stunning', 'captivating', 'exquisite', 'alluring'] },
+    { word: 'angry', synonyms: ['irate', 'furious', 'indignant', 'enraged', 'incensed', 'annoyed', 'exasperated'] },
+    { word: 'smart', synonyms: ['intelligent', 'clever', 'bright', 'astute', 'wise', 'sharp', 'brilliant'] },
+    { word: 'funny', synonyms: ['humorous', 'amusing', 'witty', 'comical', 'jovial', 'entertaining', 'lighthearted'] },
+    { word: 'excited', synonyms: ['enthusiastic', 'eager', 'thrilled', 'animated', 'elated', 'ecstatic', 'overjoyed'] },
+    { word: 'brave', synonyms: ['courageous', 'valiant', 'fearless', 'daring', 'bold', 'adventurous', 'heroic'] },
+    { word: 'calm', synonyms: ['peaceful', 'serene', 'tranquil', 'composed', 'placid', 'unperturbed', 'relaxed'] },
+    { word: 'confused', synonyms: ['bewildered', 'perplexed', 'baffled', 'disoriented', 'muddled', 'dazed', 'confounded'] },
+    { word: 'creative', synonyms: ['innovative', 'imaginative', 'original', 'resourceful', 'inventive', 'artistic', 'inspired'] },
+    { word: 'energetic', synonyms: ['vibrant', 'dynamic', 'vigorous', 'lively', 'animated', 'active', 'spirited'] },
+    { word: 'friendly', synonyms: ['amicable', 'affable', 'sociable', 'cordial', 'genial', 'warm', 'pleasant'] },
+    { word: 'generous', synonyms: ['benevolent', 'charitable', 'philanthropic', 'liberal', 'bighearted', 'munificent', 'openhanded'] },
+    { word: 'patient', synonyms: ['tolerant', 'enduring', 'forbearing', 'composed', 'unperturbed', 'stoic', 'resigned'] },
+    { word: 'mysterious', synonyms: ['enigmatic', 'cryptic', 'ambiguous', 'obscure', 'puzzling', 'secretive', 'esoteric'] },
+    { word: 'optimistic', synonyms: ['hopeful', 'positive', 'confident', 'upbeat', 'sanguine', 'buoyant', 'cheerful'] },
+    { word: 'pensive', synonyms: ['thoughtful', 'contemplative', 'reflective', 'meditative', 'introspective', 'pondering', 'musing'] },
+    { word: 'resilient', synonyms: ['tough', 'durable', 'flexible', 'robust', 'hardy', 'adaptable', 'strong'] },
+    { word: 'sincere', synonyms: ['genuine', 'authentic', 'honest', 'truthful', 'earnest', 'heartfelt', 'forthright'] },
+    { word: 'vivacious', synonyms: ['lively', 'animated', 'spirited', 'buoyant', 'energetic', 'dynamic', 'effervescent'] },
+    { word: 'zealous', synonyms: ['enthusiastic', 'passionate', 'ardent', 'fervent', 'intense', 'dedicated', 'earnest'] },
+    { word: 'meticulous', synonyms: ['thorough', 'precise', 'detailed', 'accurate', 'systematic', 'careful', 'methodical'] },
+    { word: 'exuberant', synonyms: ['lively', 'vibrant', 'enthusiastic', 'energetic', 'joyful', 'animated', 'high-spirited'] },
+    { word: 'steadfast', synonyms: ['resolute', 'unwavering', 'firm', 'determined', 'committed', 'loyal', 'devoted'] },
+    { word: 'inquisitive', synonyms: ['curious', 'inquiring', 'probing', 'interested', 'observant', 'searching', 'examining'] },
+    { word: 'gracious', synonyms: ['courteous', 'polite', 'civil', 'kind', 'considerate', 'grateful', 'appreciative'] },
+    { word: 'magnificent', synonyms: ['splendid', 'grand', 'majestic', 'glorious', 'sumptuous', 'impressive', 'stunning'] },
+    { word: 'nostalgic', synonyms: ['sentimental', 'wistful', 'yearning', 'longing', 'melancholic', 'regretful', 'homesick'] },
+    { word: 'intrepid', synonyms: ['fearless', 'courageous', 'valiant', 'brave', 'dauntless', 'bold', 'audacious'] },
+    { word: 'grateful', synonyms: ['thankful', 'appreciative', 'indebted', 'obliged', 'acknowledging', 'beholden', 'gracious'] },
+    { word: 'eccentric', synonyms: ['quirky', 'unconventional', 'idiosyncratic', 'peculiar', 'offbeat', 'individualistic', 'unusual'] },
+    { word: 'exquisite', synonyms: ['beautiful', 'elegant', 'lovely', 'charming', 'delicate', 'graceful', 'refined'] },
+    { word: 'querulous', synonyms: ['complaining', 'whining', 'peevish', 'petulant', 'irritable', 'captious', 'grumbling'] },
+    { word: 'zealot', synonyms: ['fanatic', 'enthusiast', 'extremist', 'devotee', 'radical', 'diehard', 'activist'] },
+    { word: 'effervescent', synonyms: ['bubbly', 'lively', 'sparkling', 'buoyant', 'animated', 'vivacious', 'effusive'] },
+    { word: 'mercurial', synonyms: ['volatile', 'capricious', 'fickle', 'unpredictable', 'whimsical', 'changeable', 'erratic'] },
+    ];
+
+    function generateSynonyms() {
+        const inputWord = document.getElementById('inputWord').value.toLowerCase();
+        const synonymsContainer = document.getElementById('synonymsContainer');
+
+        // Find the synonyms for the input word
+        const synonymsDataItem = synonymsData.find(item => item.word === inputWord);
+
+        // Display the synonyms if found, otherwise, show a message
+        if (synonymsDataItem) {
+            const synonymsList = synonymsDataItem.synonyms;
+            const synonymsHTML = synonymsList.map(synonym => `<div class="pill">${synonym}</div>`).join(' ');
+            synonymsContainer.innerHTML = `<div class="synonyms-pills">${synonymsHTML}</div>`;
+        } else {
+            synonymsContainer.innerHTML = '<p>No synonyms found for the entered word.</p>';
+        }
+    }
+
+    function toggleMenu() {
+        const menu = document.querySelector('.menu');
+        menu.classList.toggle('menu-open');
+    }
+</script>
+
+</div>

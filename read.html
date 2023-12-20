@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/9ca22fae96.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@500&family=Poppins:wght@600&display=swap');
+    </style>
+    <title>StatGram</title>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@1&display=swap" rel="stylesheet">
+
+
+
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-solid-straight/css/uicons-solid-straight.css'>
+</head>
+
+<body>
+    <div class="container">
+
+        <nav id="navbar">
+            <ul>
+                <li><a href="home.html"> HOME</a></li>
+                <li  class="active"><a href="read.html">READ</a></li>
+                <li><a href="you.html">YOU</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">EXPLORE</a>
+                    <div class="dropdown-content">
+                        <a href="words.html">NEW WORDS</i></a>
+                        <a href="synonym.html">SYNONYMS </a>          
+                    </div>
+                </li>
+                <li><a href="about.html">ABOUT</a></li>
+            </ul>
+        </nav>
+
+        <!-- Hamburger Icon -->
+<div class="hamburger" onclick="toggleMenu()">
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+
+
+<div class="menu">
+    <a href="home.html" onclick="toggleMenu()">Home</a>
+    <a href="read.html" onclick="toggleMenu()">Read</a>
+    <a href="you.html" onclick="toggleMenu()">You</a>
+    <a href="words.html" onclick="toggleMenu()">New Words</a>
+    <a href="synonym.html" onclick="toggleMenu()">Synonym Generator</a>
+</div>
+       
+        
+        <div class="content" id="content">
+            
+
+            
+
+                <div class="wide-container">
+    
+               
+                    <div class="search-filters">
+                        <span class="search-filter" style="opacity: 70%;"></span>
+                        <span class="search-filter">Time</span>
+                        <span class="search-filter">Regret</span>
+                        <span class="search-filter">Waves</span>
+                        <span class="search-filter">Joy</span>
+                        <span class="search-filter">Nature</span>
+                        <span class="search-filter">Love</span>
+                        <span class="search-filter">Adventure</span>
+                        <span class="search-filter">Reflection</span>
+                        <span class="search-filter">Inspiration</span>
+                        <span class="search-filter">Hope</span>
+
+                    </div>
+                    
+    
+    
+    
+                      
+                        
+                        
+                    </div>
+                
+
+                
+            </div>
+
+        
+
+
+            
+            
+            
+            <div class="wide-container">
+               
+
+             
+                <input type="text" id="chartSearchInput" class="dest-input" placeholder="&#x1F50D; Search poems, short stories and more..."
+                
+                    fdprocessedid="00wbidm" style="font-weight: 700;">
+                   
+            </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+    const compareButton = document.getElementById('compareButton');
+
+    compareButton.addEventListener('click', function () {
+        window.open('create.html', '_blank');
+    });
+});
+
+            </script>
+
+            <script>
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const chartSearchInput = document.getElementById('chartSearchInput');
+    const chartContainers = document.querySelectorAll('.achart');
+    const notFoundMessage = document.createElement('p');
+    notFoundMessage.textContent = 'Sorry. We could not find that chart. ';
+    const contributeLink = document.createElement('a');
+const updatepageLink = document.createElement('a');
+contributeLink.textContent = 'Contribute a chart';
+updatepageLink.textContent = 'Reset search results';
+contributeLink.href = 'contribution.html'; 
+updatepageLink.href = 'explore.html';
+contributeLink.style.color = 'blue';
+updatepageLink.style.color = 'blue';
+contributeLink.style.textDecoration = 'underline';
+
+notFoundMessage.appendChild(contributeLink);
+notFoundMessage.appendChild(document.createElement('br')); 
+notFoundMessage.appendChild(updatepageLink);
+
+    let invalidSearchTerm = false; 
+
+    if (chartSearchInput) {
+        chartSearchInput.addEventListener('input', function () {
+            const searchTerm = chartSearchInput.value.trim().toLowerCase();
+            let found = false;
+
+            chartContainers.forEach(function (chartContainer) {
+                const chartTitle = chartContainer.querySelector('h1').textContent.toLowerCase();
+                const chartContent = chartContainer.querySelector('p').textContent.toLowerCase();
+
+                if (chartTitle.includes(searchTerm)) {
+                    chartContainer.style.display = 'block';
+                    found = true;
+
+
+                } 
+
+                if (chartContent.includes(searchTerm)) {
+                    chartContainer.style.display = 'block';
+                    found = true;
+
+
+                } 
+
+
+                
+                
+                
+                else {
+                    chartContainer.style.display = 'none';
+                    
+
+                   
+
+                }
+            });
+
+            if (!found) {
+                if (!invalidSearchTerm) {
+                   
+                    const dynamicChartContainer = document.getElementById('dynamicChartContainer');
+                    dynamicChartContainer.appendChild(notFoundMessage);
+                }
+                invalidSearchTerm = true;
+            } else {
+                invalidSearchTerm = false;
+                notFoundMessage.style.display = 'none';
+            }
+        });
+    }
+});
+
+
+
+
+
+
+    const searchFilters = document.querySelectorAll('.search-filter');
+
+if (searchFilters) {
+    searchFilters.forEach(function (filter) {
+        filter.addEventListener('click', function () {
+            const searchTerm = filter.textContent.replace(/"/g, ''); 
+            chartSearchInput.value = searchTerm;
+
+          
+            const event = new Event('input', { bubbles: true });
+            chartSearchInput.dispatchEvent(event);
+        });
+    });
+}
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const filterPill = document.querySelector('.mobile-filter');
+    const filterOptions = document.querySelector('.filter-options');
+
+
+    filterPill.addEventListener('click', function () {
+        this.classList.toggle('active');
+    });
+
+
+    document.addEventListener('click', function (event) {
+        if (!event.target.matches('.mobile-filter')) {
+            filterPill.classList.remove('active');
+        }
+    });
+});
+
+
+
+
+
+            </script>
+
+            <div id="contentContainer" class="content-container">
+
+                <div id="full-view" class="full-view">
+                    <div class="close-button">
+                        <span id="closeFullView" class="close" style="font-size: 30px;">&times;</span>
+                    </div>
+                    <div id="fullPoemContainer">
+                        <h1 id="fullPoemTitle">Poem Title</h1>
+                        <p id="fullPoemContent">Full poem content goes here...</p>
+                    </div>
+                    <div class="button-fullview" style="display: flex; gap: 10px;">
+                        <button class="button" id="downloadPoem" style="width: 80%; font-size: 15px;">Download</button>
+                        <button class="button" id="sharePoem" style="width: 80%; font-size: 15px;">Share</button>
+                    </div>
+                </div>
+                
+             
+
+              
+
+              </div>
+<script>
+
+function generateRandomId(length) {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let randomId = '';
+
+    for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        randomId += characters.charAt(randomIndex);
+    }
+
+    return randomId;
+}
+
+ const poems = [
+    {
+        id: generateRandomId(8),
+        title: 'Time',
+        content: `In the dance of seconds, moments fleeting,<br>Time weaves tales, silent and unrelenting.<br>Past whispers linger, futures yet unwind,<br>Eternal clockwork, the cosmic design.`,
+    },
+    {
+        id: generateRandomId(8),
+        title: "Nature's Symphony",
+        content: `Beneath the emerald canopy's embrace,<br>Nature conducts a silent, verdant grace.<br>Rustling leaves, a whispered melody,<br>Earth's symphony, a timeless revelry.`,
+    },
+    {
+        id: generateRandomId(8),
+        title: 'Celestial Dreams',
+        content: `In the cosmic dance of stars on high,<br>Dreams unfold in the night sky.<br>Constellations weave tales untold,<br>Universe's secrets, a celestial gold.`,
+    },
+    {
+        id: generateRandomId(8),
+        title: "Ocean's Lullaby",
+        content: `Beneath the moon's soft, silver gleam,<br>Waves whisper in an ocean's dream.<br>Salt-kissed breezes serenade the night,<br>Nature's lullaby, a tranquil delight.`,
+    },
+    {
+        id: generateRandomId(8),
+        title: 'Inspiration',
+        content: `In the quiet whispers of the morn,<br>Inspiration is a melody, gently born.<br>With each dawn, a canvas anew,<br>Dreams painted in the morning dew.`,
+    },
+    {
+        id: generateRandomId(8),
+        title: 'Serenity',
+        content: `Amidst the chaos, find a tranquil space,<br>Serenity blooms, a peaceful embrace.<br>Whispers of calm in the gentle breeze,<br>Nature's solace, puts the heart at ease.`,
+    },
+
+    {
+        id: generateRandomId(8),
+        title: 'Letter To No One',
+        content: `In shadows cast by deeds undone,<br>A letter to no one, remorse begun.<br>Regret, a weight upon the soul,<br>Whispers of choices take their toll.<br>Guilt, a silent, haunting wail,<br>In the echoes of a forlorn trail.<br>A tale of choices, now unfurled,<br>In the letter to no one, speaks the world.<br> Truth is unbearable,<br>That's why we love lies. <br> It is unbearable and unbearable. <br> That's why we hate it. <br> We love lies, <br> We love hate, <br> We love hate.`,
+    },
+
+    {
+    id: generateRandomId(8),
+    title: 'Lament of Choices',
+    content: `In the shadows where deeds betray,<br>A letter to silence, regret holds sway.<br>Remorse, a silent weight untold,<br>Choices toll in whispers bold.<br>Guilt's haunting wail, a mournful tale,<br>In echoes of a forlorn trail,<br>A tale of choices, fate unfurls,<br>In the letter to no one, regrets swirl.`,
+},
+
+{
+    id: generateRandomId(8),
+    title: 'Fading Echoes',
+    content: `Regret's shadow in the twilight's glow,<br>A letter to nowhere, sorrows sow.<br>Weight upon the soul, a heavy toll,<br>Whispers of choices, stories untold.<br>Guilt's silent wail, echoes prevail,<br>In the forlorn trail, regrets unveil,<br>A tale of choices, now unfurled,<br>In the letter to no one, speaks the world.`,
+},
+
+{
+    id: generateRandomId(8),
+    title: 'Dance with Regret',
+    content: `Amidst shadows where deeds converse,<br>A letter to no one, regrets disperse.<br>Remorse, a soul's burden, takes its toll,<br>Whispers of choices, a somber stroll.<br>Guilt's haunting wail in echoes deep,<br>In a forlorn trail, regrets silently creep,<br>A tale of choices, fate's cruel twirl,<br>In the letter to no one, regrets swirl.`,
+},
+
+{
+    id: generateRandomId(8),
+    title: 'Sighs of Yesterday',
+    content: `In the echoes of undone deeds,<br>A letter to silence, regret feeds.<br>Weight upon the soul, a heavy score,<br>Whispers of choices, forevermore.<br>Guilt's silent wail, a haunting gale,<br>In a forlorn trail, regrets unveil,<br>A tale of choices, destiny curled,<br>In the letter to no one, regrets swirl.`,
+},
+
+{
+    id: generateRandomId(8),
+    title: 'Regret Symphony',
+    content: `Beneath shadows where deeds retire,<br>A letter to no one, regrets aspire.<br>Remorse, a symphony of silent cries,<br>Choices toll, a soul's demise.<br>Guilt's haunting wail, echoes prevail,<br>In a forlorn trail, regrets unveil,<br>A tale of choices, destiny unfurled,<br>In the letter to no one, regrets swirl.`,
+},
+
+{
+    id: generateRandomId(8),
+    title: 'Veiled Regret',
+    content: `In shadows cast by choices untold,<br>A letter to silence, regret unfolds.<br>Weight upon the soul, a haunting song,<br>Whispers of choices, memories long.<br>Guilt's silent wail in echoes deep,<br>In a forlorn trail, regrets silently creep,<br>A tale of choices, fate's cruel twirl,<br>In the letter to no one, regrets swirl.`,
+},
+
+{
+    id: generateRandomId(8),
+    title: 'Regret Embrace',
+    content: `Within shadows where choices lay,<br>A letter to no one, regrets convey.<br>Remorse, a heavy cloak to wear,<br>Choices toll in the silent air.<br>Guilt's haunting wail, echoes prevail,<br>In a forlorn trail, regrets unveil,<br>A tale of choices, destiny swirled,<br>In the letter to no one, regrets are hurled.`,
+},
+
+{
+    id: generateRandomId(8),
+    title: 'Whispers of Regret',
+    content: `In the whispers where deeds succumb,<br>A letter to silence, regrets become.<br>Weight upon the soul, a somber toll,<br>Whispers of choices, a solemn scroll.<br>Guilt's silent wail, echoes prevail,<br>In a forlorn trail, regrets unveil,<br>A tale of choices, destiny unfurled,<br>In the letter to no one, regrets are swirled.`,
+},
+
+{
+    id: generateRandomId(8),
+    title: 'Regret Serenade',
+    content: `Beneath shadows where deeds unfold,<br>A letter to silence, regrets are told.<br>Remorse, a serenade in the night,<br>Choices toll, a silent plight.<br>Guilt's haunting wail, echoes prevail,<br>In a forlorn trail, regrets unveil,<br>A tale of choices, destiny twirled,<br>In the letter to no one, regrets are hurled.`,
+},
+
+{
+    id: generateRandomId(8),
+    title: 'Elegy of Regret',
+    content: `In the echoes where deeds decay,<br>A letter to silence, regrets portray.<br>Weight upon the soul, a mournful toll,<br>Whispers of choices, a solemn stroll.<br>Guilt's silent wail in echoes deep,<br>In a forlorn trail, regrets silently creep,<br>A tale of choices, destiny unfurled,<br>In the letter to no one, regrets swirl.`,
+},
+
+{
+    id: generateRandomId(8),
+    title: 'Joyful Symphony',
+    content: `Amidst the laughter, joy takes flight,<br>A symphony of colors, radiant and bright.<br>Heartbeats dance in a euphoric tune,<br>In the realm of joy, under the crescent moon.`,
+},
+
+{
+    id: generateRandomId(8),
+    title: 'Adventure Awaits',
+    content: `Beyond the horizon, where sunsets gleam,<br>Adventure calls, a whispering dream.<br>Footprints on paths yet to be trod,<br>In the adventure's embrace, find where you're awed.`,
+},
+
+{
+    id: generateRandomId(8),
+    title: 'Reflections of the Soul',
+    content: `In the mirror of introspection, reflections unfold,<br>A journey within, stories of silver and gold.<br>Whispers of the soul, echoes in the night,<br>Reflection's embrace, a tranquil delight.`,
+},
+
+{
+    id: generateRandomId(8),
+    title: 'Hope Embrace',
+    content: `In the garden of trials, where challenges grow,<br>Hope blooms eternal, a radiant glow.<br>Petals unfurl in the morning light,<br>In hope's embrace, find strength and might.`,
+},
+{
+    id: generateRandomId(8),
+    title: 'Whispering Breeze',
+    content: `In the meadow where wildflowers sway,<br>A whispering breeze, a gentle ballet.<br>Nature's lullaby, a tranquil serenade,<br>Under the azure sky, memories are made.`,
+},
+
+{
+    id: generateRandomId(8),
+    title: 'Mystic Moonlight',
+    content: `Beneath the mystic moonlight's silver sheen,<br>Secrets of the night, in dreams, convene.<br>Stars adorn the celestial sphere,<br>In the quiet night, magic draws near.`,
+},
+
+{
+    id: generateRandomId(8),
+    title: 'Dancing Shadows',
+    content: `In the realm where shadows dance and play,<br>A silhouette ballet, at the close of day.<br>Whispers of twilight, a silent trance,<br>In the dancing shadows, moments enhance.`,
+},
+
+{
+    id: generateRandomId(8),
+    title: 'Enchanted Forest',
+    content: `Deep within the enchanted forest's embrace,<br>Whispers of ancient trees, a mystical grace.<br>Faeries dance in the moonlit glade,<br>In nature's haven, secrets are laid.`,
+},
+
+{
+    id: generateRandomId(8),
+    title: 'Sapphire Waters',
+    content: `Beside sapphire waters, a tranquil shore,<br>Rippling reflections, forevermore.<br>Seagulls soar in the cerulean sky,<br>In the calm embrace, spirits fly.`,
+},
+
+{
+    id: generateRandomId(8),
+    title: 'Ephemeral Sunset',
+    content: `At the edge of twilight, the sun takes flight,<br>Ephemeral hues, a canvas of delight.<br>Mountains silhouette against the fiery glow,<br>In the sunset's kiss, dreams bestow.`,
+},
+
+{
+    id: generateRandomId(8),
+    title: 'Lunar Reverie',
+    content: `In lunar reverie, where dreams align,<br>A celestial ballet, ethereal and divine.<br>Craters tell tales in the silent night,<br>In the moon's glow, dreams take flight.`,
+},
+
+{
+    id: generateRandomId(8),
+    title: 'Serendipity',
+    content: `Beneath the umbrella of serendipity's sway,<br>Fortunes unfold in a whimsical display.<br>Chance encounters in life's grand scheme,<br>In serendipitous moments, dreams redeem.`,
+},
+
+{
+    id: generateRandomId(8),
+    title: 'Cascade of Memories',
+    content: `Down the cascade of memories, a gentle flow,<br>Moments cascade, an ebb and a glow.<br>Ripples of laughter, echoes of cheer,<br>In the river of memories, time endears.`,
+},
+
+{
+    id: generateRandomId(8),
+    title: 'Celestial Harmony',
+    content: `In the celestial symphony, planets align,<br>Harmony resonates, a cosmic design.<br>Galaxies twirl in the cosmic ballet,<br>In the celestial expanse, wishes convey.`,
+},
+
+{
+    id: generateRandomId(8),
+    title: 'Whimsical Wonderland',
+    content: `Through the portal to a whimsical land,<br>Enchantment blooms in the golden sand.<br>Pixies dance in the emerald glade,<br>In the whimsical wonderland, dreams cascade.`,
+},
+
+{
+    id: generateRandomId(8),
+    title: 'Eternal Echoes',
+    content: `In the canyon where echoes linger and ring,<br>Eternal whispers, memories sing.<br>Rocks tell stories in silent repose,<br>In the canyon's embrace, time bestows.`,
+},
+
+{
+    id: generateRandomId(8),
+    title: 'Silken Silhouettes',
+    content: `In the twilight's glow, silken silhouettes,<br>Dancing in shadows, where the sun sets.<br>Brushstrokes of dusk paint the sky,<br>In the silken twilight, dreams amplify.`,
+},
+
+{
+    id: generateRandomId(8),
+    title: 'Moonlit Serenade',
+    content: `Beneath the moonlit arch, a serenade,<br>Stars join the chorus in the night parade.<br>Nocturnal whispers in the quietude,<br>In the moonlit serenade, dreams conclude.`,
+},
+
+{
+    id: generateRandomId(8),
+    title: 'Crimson Horizon',
+    content: `On the canvas of eve, a crimson hue,<br>Horizon ablaze in the evening dew.<br>Whispers of day bid the sun farewell,<br>In the crimson horizon, stories swell.`,
+},
+
+{
+    id: generateRandomId(8),
+    title: 'Astral Odyssey',
+    content: `Embark on an astral odyssey, a cosmic flight,<br>Through galaxies and nebulae, bathed in starlight.<br>Constellations weave tales untold,<br>In the astral odyssey, destinies unfold.`,
+},
+
+{
+    id: generateRandomId(8),
+    title: 'Azure Dreams',
+    content: `In the realm of slumber, azure dreams,<br>Waves of tranquility in celestial streams.<br>Clouds embrace the moonlit night,<br>In azure dreams, fantasies alight.`,
+},
+
+{
+    id: generateRandomId(8),
+    title: 'Radiant Reverie',
+    content: `In the garden of thoughts, a radiant bloom,<br>Reveries unfold in the twilight's gloom.<br>Petals of inspiration, colors so bright,<br>In the radiant reverie, dreams take flight.`,
+},
+
+{
+    id: generateRandomId(8),
+    title: 'Whispering Zephyr',
+    content: `On the wings of the zephyr, whispers ride,<br>Through meadows and valleys, far and wide.<br>A gentle breeze, a lover's sigh,<br>In the whispering zephyr, secrets lie.`,
+},
+
+{
+    id: generateRandomId(8),
+    title: 'Crimson Cascade',
+    content: `In the cascade of crimson, the day descends,<br>Colors ablaze as the sunlight bends.<br>Mountains wear the twilight's cloak,<br>In the crimson cascade, dreams invoke.`,
+}
+
+
+];
+
+function createPoemElements() {
+    const contentContainer = document.getElementById('contentContainer');
+
+    poems.forEach(poem => {
+        const poemElement = document.createElement('div');
+        poemElement.classList.add('achart');
+        
+
+        const maxLength = 350;
+
+        poemElement.innerHTML = `
+            <h1>${poem.title}</h1>
+            <p>${truncateText(poem.content, maxLength)}</p>
+        `;
+        poemElement.id = poem.id;
+        poemElement.addEventListener('click', () => openFullView(poem));
+        contentContainer.appendChild(poemElement);
+    });
+}
+
+function truncateText(text, maxLength) {
+    // Replace line breaks with a space
+    const modifiedText = text.replace(/<br>/g, ' ');
+
+    if (modifiedText.length > maxLength) {
+        return modifiedText.substring(0, maxLength - 3) + '...';
+    } else {
+        return modifiedText;
+    }
+}
+
+function openFullView(poem) {
+    const body = document.body;
+    body.style.overflow = 'hidden'; // Disable scrolling on the main page
+
+    const fullView = document.getElementById('full-view');
+    fullView.innerHTML = `
+        <div class="close-button">
+            <span id="closeFullView" class="close" style="font-size:40px;">←</span>
+        </div>
+        <div id="fullPoemContainer">
+            <h1 id="fullPoemTitle" >${poem.title}</h1>
+            <p id="fullPoemContent" class="fade-in">${poem.content}</p>
+        </div>
+      
+
+
+    `;
+
+    // Add click listener to the close button
+    const closeFullViewButton = fullView.querySelector('#closeFullView');
+    closeFullViewButton.addEventListener('click', function () {
+        closeFullView();
+        body.style.overflow = ''; // Enable scrolling on the main page when full view is closed
+    });
+
+    fullView.classList.add('active');
+}
+
+function closeFullView() {
+    const fullView = document.getElementById('full-view');
+    fullView.classList.remove('active');
+}
+
+
+
+
+function downloadPoem(title, content) {
+    const blob = new Blob([content], { type: 'text/plain' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `${title}.txt`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+function sharePoem(poemId) {
+    // Implement your share functionality here
+    alert(`Share poem with ID: ${poemId}`);
+}
+
+createPoemElements();
+
+</script>
+
+<script>
+    function toggleMenu() {
+    var menu = document.querySelector('.menu');
+    menu.classList.toggle('menu-open');
+}
+
+
+var hamburger = document.querySelector('.hamburger');
+var menu = document.querySelector('.menu');
+
+
+function toggleMenu() {
+    menu.classList.toggle('menu-open');
+}
+
+
+document.addEventListener('click', function (event) {
+    var isClickInsideMenu = menu.contains(event.target);
+    var isClickOnHamburger = hamburger.contains(event.target);
+
+    if (!isClickInsideMenu && !isClickOnHamburger && menu.classList.contains('menu-open')) {
+        toggleMenu();
+    }
+});
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   

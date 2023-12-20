@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+    <link rel="icon" type="image/png" href="fav.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@500&family=Poppins:wght@600&display=swap');
+    </style>
+    <title>WordMix</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@1&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="static/js/main.js"></script>
+   
+</head>
+
+
+    <div class="container">
+
+
+
+
+        <nav id="navbar">
+            <ul>
+                <li class="active"><a href="home.html"> HOME</a></li>
+                <li><a href="read.html">READ</a></li>
+                <li><a href="you.html">YOU</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">EXPLORE</a>
+                    <div class="dropdown-content">
+                        <a href="words.html">NEW WORDS</i></a>
+                        <a href="synonym.html">SYNONYMS </a>         
+                    </div>
+                </li>
+                <li><a href="about.html">ABOUT</a></li>
+            </ul>
+        </nav>
+
+        <!-- Hamburger Icon -->
+<div class="hamburger" onclick="toggleMenu()">
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+
+<!-- Navigation Menu -->
+<div class="menu">
+    <a href="home.html" onclick="toggleMenu()">Home</a>
+    <a href="read.html" onclick="toggleMenu()">Read</a>
+    <a href="you.html" onclick="toggleMenu()">You</a>
+    <a href="words.html" onclick="toggleMenu()">New Words</a>
+    <a href="synonym.html" onclick="toggleMenu()">Synonym Generator</a>
+</div>
+
+<div class="content" id="content">
+    <div>
+        <h2>Discover new words</h2>
+    </div>
+
+    <!-- Container to display word of the day -->
+    <div id="wordOfTheDayContainer">
+        <h1 id="wordTitle">Loading...</h1>
+        <p id="wordMeaning">Meaning: Loading...</p>
+        <p id="wordExample">Example: Loading...</p>
+        <button onclick="generateWordOfTheDay()" class="fab">Next Word</button>
+    </div>
+</div>
+
+<!-- JavaScript code to fetch and display word of the day -->
+<script>
+    // Array of sample words (you can replace it with an API call)
+    const words = [
+    { title: 'Serendipity', meaning: 'Finding something good without looking for it', example: 'Discovering a great book in a used bookstore was a serendipity.' },
+    { title: 'Ephemeral', meaning: 'Lasting for a very short time', example: 'The beauty of cherry blossoms is ephemeral, lasting only a few weeks.' },
+    { title: 'Mellifluous', meaning: 'Sweet or musical; pleasant to hear', example: 'The mellifluous sound of birdsong filled the air in the morning.' },
+    { title: 'Quixotic', meaning: 'Extremely idealistic; unrealistic and impractical', example: 'His quixotic quest for a perfect society often clashed with reality.' },
+    { title: 'Cacophony', meaning: 'A harsh, discordant mixture of sounds', example: 'The city street was filled with the cacophony of honking horns and construction noise.' },
+    { title: 'Obfuscate', meaning: 'To deliberately make something unclear or difficult to understand', example: 'The politician used complex language to obfuscate the true meaning of the policy.' },
+    { title: 'Sycophant', meaning: 'A person who acts obsequiously towards someone important to gain advantage', example: 'The sycophant constantly praised the boss in hopes of a promotion.' },
+    { title: 'Ubiquitous', meaning: 'Present, appearing, or found everywhere', example: 'Smartphones have become ubiquitous in modern society.' },
+    { title: 'Vorfreude', meaning: 'The joyful, intense anticipation that comes from imagining future pleasures', example: 'Her vorfreude for the upcoming vacation made the workweek more bearable.' },
+    { title: 'Zenith', meaning: 'The time at which something is most powerful or successful', example: 'The athlete reached the zenith of his career by winning an Olympic gold medal.' },
+    { title: 'Quintessential', meaning: 'Representing the most perfect or typical example of a quality or class', example: 'The little black dress is often considered the quintessential fashion item.' },
+    { title: 'Nefarious', meaning: 'Wicked, villainous, or criminal', example: 'The nefarious plot to steal the crown jewels was foiled by the detective.' },
+    { title: 'Pernicious', meaning: 'Having a harmful effect, especially in a gradual or subtle way', example: 'Gossip can have a pernicious impact on relationships.' },
+    { title: 'Crepuscular', meaning: 'Relating to or resembling twilight; active during the dawn and dusk', example: 'Cats are crepuscular animals, most active during the early morning and evening.' },
+    { title: 'Ineffable', meaning: 'Too great or extreme to be expressed or described in words', example: 'The beauty of the sunset was ineffable, leaving everyone speechless.' },
+    { title: 'Lethologica', meaning: 'The inability to remember a particular word or name', example: 'She experienced lethologica when she couldn’t recall the actor’s name.' },
+    { title: 'Munificent', meaning: 'More generous than is usual or necessary', example: 'The billionaires munificent donation greatly benefited the local community.' },
+    { title: 'Ephemeral', meaning: 'Lasting for a very short time', example: 'The beauty of cherry blossoms is ephemeral, lasting only a few weeks.' },
+    { title: 'Mellifluous', meaning: 'Sweet or musical; pleasant to hear', example: 'The mellifluous sound of birdsong filled the air in the morning.' },
+    { title: 'Quixotic', meaning: 'Extremely idealistic; unrealistic and impractical', example: 'His quixotic quest for a perfect society often clashed with reality.' },
+    { title: 'Cacophony', meaning: 'A harsh, discordant mixture of sounds', example: 'The city street was filled with the cacophony of honking horns and construction noise.' },
+    { title: 'Obfuscate', meaning: 'To deliberately make something unclear or difficult to understand', example: 'The politician used complex language to obfuscate the true meaning of the policy.' },
+    { title: 'Sycophant', meaning: 'A person who acts obsequiously towards someone important to gain advantage', example: 'The sycophant constantly praised the boss in hopes of a promotion.' },
+    { title: 'Ubiquitous', meaning: 'Present, appearing, or found everywhere', example: 'Smartphones have become ubiquitous in modern society.' },
+    { title: 'Vorfreude', meaning: 'The joyful, intense anticipation that comes from imagining future pleasures', example: 'Her vorfreude for the upcoming vacation made the workweek more bearable.' },
+    { title: 'Zenith', meaning: 'The time at which something is most powerful or successful', example: 'The athlete reached the zenith of his career by winning an Olympic gold medal.' },
+    { title: 'Quintessential', meaning: 'Representing the most perfect or typical example of a quality or class', example: 'The little black dress is often considered the quintessential fashion item.' },
+    { title: 'Nefarious', meaning: 'Wicked, villainous, or criminal', example: 'The nefarious plot to steal the crown jewels was foiled by the detective.' },
+    { title: 'Pernicious', meaning: 'Having a harmful effect, especially in a gradual or subtle way', example: 'Gossip can have a pernicious impact on relationships.' },
+    { title: 'Crepuscular', meaning: 'Relating to or resembling twilight; active during the dawn and dusk', example: 'Cats are crepuscular animals, most active during the early morning and evening.' },
+    { title: 'Ineffable', meaning: 'Too great or extreme to be expressed or described in words', example: 'The beauty of the sunset was ineffable, leaving everyone speechless.' },
+    { title: 'Lethologica', meaning: 'The inability to remember a particular word or name', example: 'She experienced lethologica when she couldn’t recall the actor’s name.' },
+    { title: 'Munificent', meaning: 'More generous than is usual or necessary', example: 'The billionaires munificent donation greatly benefited the local community.' },
+    { title: 'Pulchritudinous', meaning: 'Breathtakingly beautiful; physically attractive', example: 'The landscape was so pulchritudinous that it took our breath away.' },
+    { title: 'Supercilious', meaning: 'Behaving or looking as though one thinks they are superior to others', example: 'Her supercilious attitude made it difficult for others to approach her.' },
+    { title: 'Sonder', meaning: 'The realization that each passerby has a life as vivid and complex as your own', example: 'While sitting in the park, he experienced a profound sense of sonder.' },
+    { title: 'Cacophony', meaning: 'A harsh, discordant mixture of sounds', example: 'The city street was filled with the cacophony of honking horns and construction noise.' },
+    { title: 'Ephemeral', meaning: 'Lasting for a very short time', example: 'The beauty of cherry blossoms is ephemeral, lasting only a few weeks.' },
+    { title: 'Mellifluous', meaning: 'Sweet or musical; pleasant to hear', example: 'The mellifluous sound of birdsong filled the air in the morning.' },
+    { title: 'Quixotic', meaning: 'Extremely idealistic; unrealistic and impractical', example: 'His quixotic quest for a perfect society often clashed with reality.' },
+    { title: 'Cacophony', meaning: 'A harsh, discordant mixture of sounds', example: 'The city street was filled with the cacophony of honking horns and construction noise.' },
+    { title: 'Obfuscate', meaning: 'To deliberately make something unclear or difficult to understand', example: 'The politician used complex language to obfuscate the true meaning of the policy.' },
+    { title: 'Panacea', meaning: 'A solution or remedy for all difficulties or diseases', example: 'Some people believe that laughter is a panacea for stress.' },
+    { title: 'Quagmire', meaning: 'A soft, boggy area of land that gives way underfoot; a difficult or precarious situation', example: 'The negotiations turned into a quagmire with no clear resolution in sight.' },
+    { title: 'Sanguine', meaning: 'Optimistic or positive, especially in an apparently bad or difficult situation', example: 'Despite the setbacks, she remained sanguine about the project’s success.' },
+    { title: 'Nostalgia', meaning: 'A sentimental longing or wistful affection for the past, typically for a period or place with happy personal associations', example: 'Looking at old photographs filled him with nostalgia for his childhood.' },
+    { title: 'Voracious', meaning: 'Wanting or devouring great quantities of food; having a very eager approach to a particular activity', example: 'The voracious reader finished the entire book in one sitting.' },
+    { title: 'Peregrinate', meaning: 'To travel or wander around from place to place', example: 'After retirement, they planned to peregrinate and explore different countries.' },
+    { title: 'Sesquipedalian', meaning: 'Characterized by long words; long-winded', example: 'His sesquipedalian writing style made the article challenging to read.' },
+    { title: 'Pernicious', meaning: 'Having a harmful effect, especially in a gradual or subtle way', example: 'Gossip can have a pernicious impact on relationships.' },
+    { title: 'Crepuscular', meaning: 'Relating to or resembling twilight; active during the dawn and dusk', example: 'Cats are crepuscular animals, most active during the early morning and evening.' },
+    { title: 'Ineffable', meaning: 'Too great or extreme to be expressed or described in words', example: 'The beauty of the sunset was ineffable, leaving everyone speechless.' },
+    { title: 'Lethologica', meaning: 'The inability to remember a particular word or name', example: 'She experienced lethologica when she couldn’t recall the actor’s name.' },
+    { title: 'Munificent', meaning: 'More generous than is usual or necessary', example: 'The billionaires munificent donation greatly benefited the local community.' },
+    ];
+
+    // Function to display word of the day
+    function displayWordOfTheDay(index) {
+        const wordContainer = document.getElementById('wordOfTheDayContainer');
+        const currentWord = words[index];
+
+        document.getElementById('wordTitle').textContent = currentWord.title;
+        document.getElementById('wordMeaning').textContent = `Meaning: ${currentWord.meaning}`;
+        document.getElementById('wordExample').textContent = `Example: ${currentWord.example}`;
+    }
+
+    // Function to generate the next word of the day
+    function generateWordOfTheDay() {
+        const randomIndex = Math.floor(Math.random() * words.length);
+        displayWordOfTheDay(randomIndex);
+    }
+
+    // Fetch and display the initial word of the day when the page loads
+    window.onload = function () {
+        generateWordOfTheDay();
+    };
+
+    // Toggle menu function
+    function toggleMenu() {
+        const menu = document.querySelector('.menu');
+        menu.classList.toggle('menu-open');
+    }
+</script>
+</div>

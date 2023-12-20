@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="fav.png">
+    <script src="script.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@500&family=Poppins:wght@600&display=swap');
+    </style>
+    <title>WordMix - Display Poems</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@1&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <nav id="navbar">
+            <ul>
+                <li><a href="home.html"> HOME</a></li>
+                <li><a href="read.html">READ</a></li>
+                <li   class="active"><a href="you.html">YOU</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">EXPLORE</a>
+                    <div class="dropdown-content">
+                        <a href="words.html">NEW WORDS</i></a>
+                        <a href="synonym.html">SYNONYMS</a>
+                    </div>
+                </li>
+                <li><a href="about.html">ABOUT</a></li>
+            </ul>
+        </nav>
+
+        <!-- Hamburger Icon -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <div class="menu">
+            <a href="home.html" onclick="toggleMenu()">Home</a>
+            <a href="read.html" onclick="toggleMenu()">Read</a>
+            <a href="you.html" onclick="toggleMenu()">You</a>
+            <a href="words.html" onclick="toggleMenu()">New Words</a>
+            <a href="synonym.html" onclick="toggleMenu()">Synonym Generator</a>
+        </div>
+
+
+        <div class="content" id="content">
+            <div>
+                <h2>Your verses</h2>
+                <!-- Add any introductory text if needed -->
+            </div>
+
+            <!-- Container to display poems -->
+            <div id="poemsContainer" class="content-container"></div>
+            
+
+
+        <!-- JavaScript code to fetch and display poems -->
+        <script>
+            // Function to display submitted poems
+            function displayPoems() {
+                const poemsContainer = document.getElementById('poemsContainer');
+                poemsContainer.innerHTML = ''; // Clear existing content
+
+                const poems = JSON.parse(localStorage.getItem('poems')) || [];
+
+                poems.forEach(poem => {
+        const poemElement = document.createElement('div');
+        poemElement.classList.add('achart');
+
+                    poemElement.innerHTML = `<h1>${poem.title}</h1><p>${poem.content}</p>`;
+                    poemsContainer.appendChild(poemElement);
+
+                    
+                });
+            }
+
+            // Fetch and display submitted poems when the page loads
+            window.onload = function () {
+                displayPoems();
+            };
+        </script>
+
+
+
+
+<script>
+
+    function toggleMenu() {
+    var menu = document.querySelector('.menu');
+    menu.classList.toggle('menu-open');
+}
+
+// Get references to the hamburger icon and menu
+var hamburger = document.querySelector('.hamburger');
+var menu = document.querySelector('.menu');
+
+// Toggle menu function
+function toggleMenu() {
+    menu.classList.toggle('menu-open');
+}
+
+// Close menu when clicking outside
+document.addEventListener('click', function (event) {
+    var isClickInsideMenu = menu.contains(event.target);
+    var isClickOnHamburger = hamburger.contains(event.target);
+
+    if (!isClickInsideMenu && !isClickOnHamburger && menu.classList.contains('menu-open')) {
+        toggleMenu();
+    }
+});
+
+</script>
+      
+
+
+    </div>
+</body>
+
+</html>
